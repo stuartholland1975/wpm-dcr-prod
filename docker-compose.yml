@@ -1,0 +1,37 @@
+version: '3'
+services:
+  # db:
+  #   image: wpm-db-prod
+  #   container_name: wpm-db-prod
+  #   ports:
+  #     - '9432:9432'
+  #   build:
+  #     context: ./db
+  #     dockerfile: Dockerfile
+  #   restart: unless-stopped
+  #   volumes:
+  #     - 'wpm_db_prod:/var/lib/postgresql/data'
+  api:
+    image: wpm-api-prod
+    container_name: wpm-api-prod
+    expose:
+      - '${APP_SERVER_PORT}'
+    ports:
+      - '${APP_SERVER_PORT}:${APP_SERVER_PORT}'
+    environment:
+      API_HOST: '${API_HOST}'
+      APP_SERVER_PORT: '${APP_SERVER_PORT}'
+    # depends_on:
+    #   - db
+    restart: unless-stopped
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+  web:
+    image: wpm-host-prod
+    container_name: wpm-host-prod
+    ports:
+      - '80:80'
+    build: ./web
+    depends_on:
+      - api
