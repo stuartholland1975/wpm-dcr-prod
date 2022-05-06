@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\..\\WpmDev"
+		}
+	],
+	"settings": {
+		"sqltools.connections": [
+			{
+				"previewLimit": 50,
+				"server": "192.168.0.20",
+				"port": 9432,
+				"driver": "PostgreSQL",
+				"name": "tnas",
+				"database": "wpm_live",
+				"username": "postgres",
+				"password": "987jmo00"
+			}
+		]
+	}
+}
